@@ -153,7 +153,7 @@ class MovieTile extends StatelessWidget {
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Container(
-                                          height: MediaQuery.of(context).size.height*0.6,
+                                          height: MediaQuery.of(context).size.height*0.7,
                                             child: EditMovie(currentMovie: currentMovie)),
                                       ));
                             },

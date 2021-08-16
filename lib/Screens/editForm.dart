@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movieee_app/Components/text_field_container.dart';
 import 'package:movieee_app/models/movie.dart';
 import 'package:movieee_app/models/movie_data.dart';
 import 'package:provider/provider.dart';
@@ -33,68 +34,85 @@ class _EditMovieState extends State<EditMovie> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildDirectorName() {
-    return TextFormField(
-      initialValue: widget.currentMovie.director,
-      decoration: InputDecoration(labelText: "Director Name"),
-      validator: (String value) {
-        if (value.isEmpty) {
-          return 'Director name is required';
-        }
-        return null;
-      },
-      onSaved: (String value) {
-        _editDirector = value;
-      },
+    return TextFieldContainer(
+      child: TextFormField(
+        cursorColor: Color(0xFF6F35A5),
+        initialValue: widget.currentMovie.director,
+        decoration: InputDecoration(labelText: "Director Name",
+          border: InputBorder.none,),
+        validator: (String value) {
+          if (value.isEmpty) {
+            return 'Director name is required';
+          }
+          return null;
+        },
+        onSaved: (String value) {
+          _editDirector = value;
+        },
+      ),
     );
   }
 
   Widget _buildMovieName() {
-    return TextFormField(
-      initialValue: widget.currentMovie.movieName,
-      decoration: InputDecoration(labelText: "Movie Name"),
-      validator: (String value) {
-        if (value.isEmpty) {
-          return 'Movie name is required';
-        }
-        return null;
-      },
-      onSaved: (String value) {
-        _editMovieName = value;
-      },
+    return TextFieldContainer(
+      child: TextFormField(
+        cursorColor: Color(0xFF6F35A5),
+        initialValue: widget.currentMovie.movieName,
+        decoration: InputDecoration(labelText: "Movie Name",
+          border: InputBorder.none,),
+        validator: (String value) {
+          if (value.isEmpty) {
+            return 'Movie name is required';
+          }
+          return null;
+        },
+        onSaved: (String value) {
+          _editMovieName = value;
+        },
+      ),
     );
   }
 
   Widget _buildReleaseYear() {
-    return TextFormField(
-      initialValue: widget.currentMovie.releaseYear.toString(),
-      keyboardType: TextInputType.number,
-      decoration: InputDecoration(labelText: "Release Year"),
-      validator: (String value) {
-        if (value.isEmpty) {
-          return 'Release year is required';
-        }
-        return null;
-      },
-      onSaved: (String value) {
-        _editReleaseYear = int.parse(value);
-      },
+    return TextFieldContainer(
+      child: TextFormField(
+        cursorColor: Color(0xFF6F35A5),
+        initialValue: widget.currentMovie.releaseYear.toString(),
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(labelText: "Release Year",
+          border: InputBorder.none,
+        ),
+        validator: (String value) {
+          if (value.isEmpty) {
+            return 'Release year is required';
+          }
+          return null;
+        },
+        onSaved: (String value) {
+          _editReleaseYear = int.parse(value);
+        },
+      ),
     );
   }
 
   Widget _buildPosterURL() {
-    return TextFormField(
-      initialValue: widget.currentMovie.url,
-      keyboardType: TextInputType.url,
-      decoration: InputDecoration(labelText: "Poster url"),
-      validator: (String value) {
-        if (value.isEmpty) {
-          return 'Poster url is required';
-        }
-        return null;
-      },
-      onSaved: (String value) {
-        _editPosterURL = value;
-      },
+    return TextFieldContainer(
+      child: TextFormField(
+        cursorColor: Color(0xFF6F35A5),
+        initialValue: widget.currentMovie.url,
+        keyboardType: TextInputType.url,
+        decoration: InputDecoration(labelText: "Poster url",
+          border: InputBorder.none,),
+        validator: (String value) {
+          if (value.isEmpty) {
+            return 'Poster url is required';
+          }
+          return null;
+        },
+        onSaved: (String value) {
+          _editPosterURL = value;
+        },
+      ),
     );
   }
 
@@ -102,7 +120,7 @@ class _EditMovieState extends State<EditMovie> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 25.0),
           child: Form(
             key: _formKey,
             child: Wrap(

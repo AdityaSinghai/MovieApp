@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
               builder: (context) => Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Container(
-                    height: MediaQuery.of(context).size.height * 0.6,
+                    height: MediaQuery.of(context).size.height * 0.7,
                     child: AddMovieForm()),
               ),
             );
