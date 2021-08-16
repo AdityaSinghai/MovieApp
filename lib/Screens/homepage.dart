@@ -26,9 +26,9 @@ class _HomePageState extends State<HomePage> {
     getCurrentUser();
   }
 
-  void getCurrentUser()  {
+  void getCurrentUser() {
     try {
-      final user =  _auth.currentUser;
+      final user = _auth.currentUser;
       if (user != null) {
         setState(() {
           loggedInUser = user;
@@ -57,9 +57,8 @@ class _HomePageState extends State<HomePage> {
           onPressed: () {
             showModalBottomSheet(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(20))
-              ),
-
+                  borderRadius:
+                      BorderRadius.vertical(top: Radius.circular(20))),
               isScrollControlled: true,
               context: context,
               builder: (context) => Padding(
@@ -73,10 +72,9 @@ class _HomePageState extends State<HomePage> {
         ),
         appBar: AppBar(
           title: Text(
-                  "Hi ${loggedInUser.email}!",
-                  style: TextStyle(color: Colors.black),
-                )
-              ,
+            "Hi ${loggedInUser.email}!",
+            style: TextStyle(color: Colors.black),
+          ),
           backgroundColor: Colors.white,
           actions: [
             IconButton(
@@ -98,7 +96,17 @@ class _HomePageState extends State<HomePage> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(child: Container(child: MovieList())),
+            Expanded(
+                child: Container(
+                    child: Provider.of<MoviesData>(context).movieCount == 0
+                        ? Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Text(
+                                  "There are no movies added. In order to add movies, press the '+' button"),
+                            ),
+                          )
+                        : MovieList())),
           ],
         ),
       ),
