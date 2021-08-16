@@ -109,19 +109,28 @@ class _AddMovieFormState extends State<AddMovieForm> {
               Center(
                 child: Padding(
                   padding: const EdgeInsets.all(40.0),
-                  child: ElevatedButton(
-                      child: Text('Submit'),
-                      onPressed: () {
-                        if (!_formKey.currentState.validate()) {
-                          return;
-                        }
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      color: Color(0xFF6F35A5),
+                    ),
+                    child: MaterialButton(
+                        textColor: Colors.white,
+                        padding: EdgeInsets.all(10.0),
+                        splashColor: Color(0xFF6F35A5),
+                        child: Text('Submit'),
+                        onPressed: () {
+                          if (!_formKey.currentState.validate()) {
+                            return;
+                          }
 
-                        _formKey.currentState.save();
+                          _formKey.currentState.save();
 
-                        _addMovie(context);
+                          _addMovie(context);
 
 
-                      }),
+                        }),
+                  ),
                 ),
               )
             ],

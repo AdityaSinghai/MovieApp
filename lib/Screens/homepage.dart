@@ -5,9 +5,9 @@ import 'package:provider/provider.dart';
 import 'addMovieForm.dart';
 import 'movie_list.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-class HomePage extends StatefulWidget {
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
+class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -15,80 +15,92 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final _auth = FirebaseAuth.instance;
   User loggedInUser;
+  bool showSpinner = false;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
     getCurrentUser();
   }
 
-  void getCurrentUser() async{
-    try{
+  void getCurrentUser() async {
+    try {
       final user = await _auth.currentUser;
-      if(user != null){
-        loggedInUser = user;
-        print("Printing logged in user: "+loggedInUser.email);
-      }}
-      catch(e){
-        print(e);
-      }
-    }
+      if (user != null) {
+        setState(() {
+          loggedInUser = user;
+        });
 
+        print("Printing logged in user: " + loggedInUser.email);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     Provider.of<MoviesData>(context, listen: false).getMovies();
 
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'Add Movies',
-        child: Icon(Icons.add),
-        onPressed: () {
-          showModalBottomSheet(
-            isScrollControlled: true,
-              context: context, builder: (context) => Padding(
+    return ModalProgressHUD(
+      inAsyncCall: showSpinner,
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Color(0xFF6F35A5),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          tooltip: 'Add Movies',
+          child: Icon(Icons.add),
+          onPressed: () {
+            showModalBottomSheet(
+              isScrollControlled: true,
+              context: context,
+              builder: (context) => Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.red,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20)
-                    )
-                  ),
-                  height: MediaQuery.of(context).size.height*0.6,
+                    decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20))),
+                    height: MediaQuery.of(context).size.height * 0.6,
                     child: AddMovieForm()),
               ),
-          );
-        },
-      ),
-      appBar: AppBar(
-        title: Text("Hi ${loggedInUser.email}!",style: TextStyle(
-          color: Colors.black
-        ),),
-        backgroundColor: Colors.white,
-        actions: [
-          IconButton(icon: Icon(Icons.logout,color: Colors.black,), onPressed: (){
-            _auth.signOut();
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) {
-                return LoginScreen();
-              }),
             );
-          })
-        ],
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-              child: Container(
-                  child: MovieList()
-              )
-          ),
-        ],
+          },
+        ),
+        appBar: AppBar(
+          title: Text(
+                  "Hi ${loggedInUser.email}!",
+                  style: TextStyle(color: Colors.black),
+                )
+              ,
+          backgroundColor: Colors.white,
+          actions: [
+            IconButton(
+                icon: Icon(
+                  Icons.logout,
+                  color: Colors.black,
+                ),
+                onPressed: () {
+                  _auth.signOut();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return LoginScreen();
+                    }),
+                  );
+                })
+          ],
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(child: Container(child: MovieList())),
+          ],
+        ),
       ),
     );
   }

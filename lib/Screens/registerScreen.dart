@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:movieee_app/Components/already_have_an_account_acheck.dart';
 import 'package:movieee_app/Components/text_field_container.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movieee_app/Screens/homepage.dart';
+import 'package:movieee_app/Screens/loginScreen.dart';
 class RegistrationScreen extends StatefulWidget {
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
@@ -160,6 +162,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _buildError(),
+                Text(
+                  "Sign Up in MovieeApp",
+                  style: TextStyle(fontWeight: FontWeight.w300,fontSize: 25),
+                ),
                 _buildEmailForm(),
                 _buildPasswordForm(),
 
@@ -175,7 +181,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           textColor: Colors.white,
                           padding: EdgeInsets.all(10.0),
                           splashColor: Color(0xFF6F35A5),
-                          child: Text('Submit'),
+                          child: Text(
+                            'Submit',
+                            style: TextStyle(
+                                fontFamily: 'Poppins',
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold),
+                          ),
                           onPressed: () async{
                             if (!_formKey.currentState.validate()) {
                               return;
@@ -202,7 +215,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           },
                   ),
                     ),
-                ))
+                )),
+                AlreadyHaveAnAccountCheck(
+                  press: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return LoginScreen();
+                        },
+                      ),
+                    );
+                  },
+                  login: false,
+                ),
               ],
             ),
           ),

@@ -115,19 +115,31 @@ class _EditMovieState extends State<EditMovie> {
                   height: 50,
                 ),
                 Center(
-                  child: ElevatedButton(
-                      child: Text('Submit'),
-                      onPressed: () {
-                        if (!_formKey.currentState.validate()) {
-                          return;
-                        }
+                  child: Padding(
+                    padding: const EdgeInsets.only(top:50.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        color: Color(0xFF6F35A5),
+                      ),
+                      child: MaterialButton(
+                          textColor: Colors.white,
+                          padding: EdgeInsets.all(10.0),
+                          splashColor: Color(0xFF6F35A5),
+                          child: Text('Submit'),
+                          onPressed: () {
+                            if (!_formKey.currentState.validate()) {
+                              return;
+                            }
 
-                        _formKey.currentState.save();
+                            _formKey.currentState.save();
 
-                        _editMovie(context);
+                            _editMovie(context);
 
-                        Navigator.pop(context);
-                      }),
+                            Navigator.pop(context);
+                          }),
+                    ),
+                  ),
                 )
               ],
             ),

@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
       inAsyncCall: showSpinner,
       child: Scaffold(
           body: Column(
-            //mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
                 height: 30,
@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
               _buildError(),
               Text(
                 "Login in MovieeApp",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.w300,fontSize: 25),
               ),
               Container(
                 padding: EdgeInsets.only(left: 25, top: 10, right: 25),
@@ -191,7 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   color: Colors.white,
-                                  fontSize: 20,
+                                  fontSize: 17,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
