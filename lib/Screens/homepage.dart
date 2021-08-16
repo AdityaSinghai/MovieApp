@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movieee_app/Screens/loginScreen.dart';
 import 'package:movieee_app/models/movie_data.dart';
@@ -55,16 +56,15 @@ class _HomePageState extends State<HomePage> {
           child: Icon(Icons.add),
           onPressed: () {
             showModalBottomSheet(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20))
+              ),
+
               isScrollControlled: true,
               context: context,
               builder: (context) => Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20))),
                     height: MediaQuery.of(context).size.height * 0.6,
                     child: AddMovieForm()),
               ),

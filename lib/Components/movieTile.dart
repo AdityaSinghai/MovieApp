@@ -144,6 +144,9 @@ class MovieTile extends StatelessWidget {
                                   .setActiveMovie(currentMovie.key);
 
                               showModalBottomSheet(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.vertical(top: Radius.circular(20))
+                                  ),
                                 isScrollControlled: true,
                                   context: context,
                                   builder: (context) =>
