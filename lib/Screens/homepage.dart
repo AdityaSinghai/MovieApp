@@ -71,9 +71,18 @@ class _HomePageState extends State<HomePage> {
           },
         ),
         appBar: AppBar(
-          title: Text(
-            "Hi ${loggedInUser.email}!",
-            style: TextStyle(color: Colors.black),
+          titleSpacing: 0.0,
+          toolbarHeight: MediaQuery.of(context).size.height*0.1,
+          title: Transform(
+            transform:  Matrix4.translationValues(-40.0, 0.0, 0.0),
+            child: Text(
+              "Welcome, ${loggedInUser.email}!",
+              textAlign: TextAlign.left,
+              maxLines: 2,
+              style: TextStyle(color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 18),
+            ),
           ),
           backgroundColor: Colors.white,
           actions: [
