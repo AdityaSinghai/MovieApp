@@ -25,9 +25,9 @@ class _HomePageState extends State<HomePage> {
     getCurrentUser();
   }
 
-  void getCurrentUser() async {
+  void getCurrentUser()  {
     try {
-      final user = await _auth.currentUser;
+      final user =  _auth.currentUser;
       if (user != null) {
         setState(() {
           loggedInUser = user;

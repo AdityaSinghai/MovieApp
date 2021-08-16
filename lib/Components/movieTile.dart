@@ -78,6 +78,7 @@ class MovieTile extends StatelessWidget {
         Movie currentMovie = movieData.getMovie(tileIndex);
         return Stack(
           children: [
+
             Container(
               height: MediaQuery.of(context).size.height*0.11,
               decoration: BoxDecoration(
