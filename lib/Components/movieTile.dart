@@ -55,8 +55,7 @@ class MovieTile extends StatelessWidget {
                   print("Deleting ${currentClient.movieName}...");
                   Provider.of<MoviesData>(context, listen: false)
                       .deleteMovie(currentClient.key);
-                  Navigator.popUntil(
-                      context, ModalRoute.withName(Navigator.defaultRouteName));
+                  Navigator.pop(context);
                 },
               ),
               TextButton(
